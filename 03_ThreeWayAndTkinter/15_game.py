@@ -40,6 +40,16 @@ class Application(tk.Frame):
         if ((abs(new_row-start_row) == 1) and (new_column == start_column)) or ((abs(new_column-start_column) == 1) and (new_row == start_row)):
             self.buttons[cell_number].grid(row=new_row, column=new_column, sticky="SEWN")
             self.empty_cell = (start_row-1)*4 + start_column    
+            self.check()
+
+    def check(self):
+        result = 0
+        for i in range(15):
+            cell_position = (self.buttons[i].grid_info()['row'] - 1) * 4 + self.buttons[i].grid_info()['column']
+            result += int(str(cell_position+1) == self.buttons[i].cget('text'))
+        if result == 15: 
+            print('win')
+            self.new_game()
 
 
 app = Application()
