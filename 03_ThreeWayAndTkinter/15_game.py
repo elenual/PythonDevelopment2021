@@ -23,6 +23,9 @@ class Application(tk.Frame):
         self.buttons = []
         self.numbers = list(range(15))
         shuffle(self.numbers)
+        while not self.solvability_check( self.numbers):
+            print('changed')
+            shuffle(self.numbers)
         for position, number in enumerate(self.numbers):
             self.buttons.append(tk.Button(self, text=str(number+1), command = lambda x=position: self.move(x)))
             self.buttons[-1].grid(row=position//4+1, column=position%4, sticky="SEWN")
@@ -41,9 +44,9 @@ class Application(tk.Frame):
         if ((abs(new_row-start_row) == 1) and (new_column == start_column)) or ((abs(new_column-start_column) == 1) and (new_row == start_row)):
             self.buttons[cell_number].grid(row=new_row, column=new_column, sticky="SEWN")
             self.empty_cell = (start_row-1)*4 + start_column    
-            self.check()
+            self.win_check()
 
-    def check(self):
+    def win_check(self):
         result = 0
         for i in range(15):
             cell_position = (self.buttons[i].grid_info()['row'] - 1) * 4 + self.buttons[i].grid_info()['column']
@@ -52,6 +55,16 @@ class Application(tk.Frame):
             messagebox.showinfo('', 'You win!')
             self.new_game()
 
+    def solvability_check(self, num_list):
+        inv = 0
+        for i in range(14):
+            for j in range(i+1, 15):
+                if num_list[i]>num_list[j]: 
+                    inv+=1
+        if inv%2==0:
+            return True
+        else:
+            return False
 
 
 app = Application()
