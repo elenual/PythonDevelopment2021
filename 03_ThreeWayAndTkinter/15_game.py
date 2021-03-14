@@ -6,11 +6,11 @@ class Application(tk.Frame):
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
         self.grid(sticky=tk.N+tk.S+tk.E+tk.W)
+        self.winfo_toplevel().geometry('400x400+300+200')
         self.createWidgets()
 
     def createWidgets(self):
         top=self.winfo_toplevel()
-        top.geometry('400x400+300+200')
         top.rowconfigure(0, weight=1)
         top.columnconfigure(0, weight=1)
         for i in range(4):
