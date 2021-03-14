@@ -18,7 +18,7 @@ class Application(tk.Frame):
         self.rowconfigure(4, weight=1)
         self.ExitButton = tk.Button(self, text='Exit', command = self.quit , background="white")
         self.ExitButton.grid(row = 0, column = 2, columnspan = 2, sticky="NSEW")
-        self.NewButton = tk.Button(self, text='New', command = self.quit , background="white")
+        self.NewButton = tk.Button(self, text='New', command = self.new_game , background="white")
         self.NewButton.grid(row = 0, column = 0, columnspan = 2, sticky="NSEW")
         buttons = []
         numbers = list(range(15))
@@ -26,6 +26,9 @@ class Application(tk.Frame):
         for i, j in enumerate(numbers):
             buttons.append(tk.Button(self, text=str(j+1)))
             buttons[-1].grid(row=i//4+1, column=i%4, sticky="SEWN")
+    
+    def new_game(self):
+        self.createWidgets()
 
 app = Application()
 app.master.title('15')
