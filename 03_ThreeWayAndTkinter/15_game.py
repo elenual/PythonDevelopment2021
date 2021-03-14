@@ -28,6 +28,8 @@ class Application(tk.Frame):
         self.empty_cell = 15
     
     def new_game(self):
+        for i in self.buttons:
+            i.destroy()
         self.createWidgets()
 
     def move(self, cell_number):
