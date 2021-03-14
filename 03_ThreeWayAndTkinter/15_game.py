@@ -1,5 +1,6 @@
 import tkinter as tk
 from random import shuffle
+from tkinter import messagebox
 
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -48,8 +49,9 @@ class Application(tk.Frame):
             cell_position = (self.buttons[i].grid_info()['row'] - 1) * 4 + self.buttons[i].grid_info()['column']
             result += int(str(cell_position+1) == self.buttons[i].cget('text'))
         if result == 15: 
-            print('win')
+            messagebox.showinfo('', 'You win!')
             self.new_game()
+
 
 
 app = Application()
