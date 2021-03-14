@@ -10,6 +10,7 @@ class Application(tk.Frame):
 
     def createWidgets(self):
         top=self.winfo_toplevel()
+        top.geometry('400x400+300+200')
         top.rowconfigure(0, weight=1)
         top.columnconfigure(0, weight=1)
         for i in range(4):
@@ -24,7 +25,6 @@ class Application(tk.Frame):
         self.numbers = list(range(15))
         shuffle(self.numbers)
         while not self.solvability_check( self.numbers):
-            print('changed')
             shuffle(self.numbers)
         for position, number in enumerate(self.numbers):
             self.buttons.append(tk.Button(self, text=str(number+1), command = lambda x=position: self.move(x)))
