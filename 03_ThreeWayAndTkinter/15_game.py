@@ -37,7 +37,7 @@ class Application(tk.Frame):
         start_column = self.buttons[cell_number].grid_info()['column']
         new_row = self.empty_cell//4+1
         new_column = self.empty_cell%4
-        if (abs(new_row-start_row) ==1) != (abs(new_column-start_column) ==1):
+        if ((abs(new_row-start_row) == 1) and (new_column == start_column)) or ((abs(new_column-start_column) == 1) and (new_row == start_row)):
             self.buttons[cell_number].grid(row=new_row, column=new_column, sticky="SEWN")
             self.empty_cell = (start_row-1)*4 + start_column    
 
